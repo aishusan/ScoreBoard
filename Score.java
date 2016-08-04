@@ -9,6 +9,14 @@ public class Score {
 	}
 
 	public void incrementPoint(int player) {
+		
+		points[player]++;
+	    int otherPlayer = (player+1) % 2;
+	    int pointDifference = points[player] - points[otherPlayer];
+	    if((pointDifference>=2) && points[player]>=4) {
+	        incrementGames(player);
+	        resetPoints();
+	    }
 
 	}
 
