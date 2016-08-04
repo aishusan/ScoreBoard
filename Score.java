@@ -1,4 +1,13 @@
 public class Score {
+	
+	public static void main(String ag[]) {
+		Score score = new Score();
+		String input = "aaaaabaa";
+		char[] in = input.toUpperCase().toCharArray();
+		for (char ch : in) {
+			score.incrementPoint(ch);
+		}
+	}
 
 	int[] points = { 0, 0 };
 	int[] sets = { 0, 0 };
