@@ -1,11 +1,12 @@
 public class Score {
-	
+
 	public static void main(String ag[]) {
 		Score score = new Score();
-		String input = "aaaaabaa";
+		String input = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
 		char[] in = input.toUpperCase().toCharArray();
 		for (char ch : in) {
 			score.incrementPoint(ch);
+			score.printScore();
 		}
 	}
 
@@ -19,8 +20,12 @@ public class Score {
 
 	public void incrementPoint(char ch) {
 		int player = getPlayerFromChar(ch);
-		points[player]++;
 		int otherPlayer = 1 - player;
+		if (hasWon(player) || hasWon(otherPlayer)) {
+			System.out.println("Mtch over");
+			return;
+		}
+		points[player]++;
 		int pointDifference = points[player] - points[otherPlayer];
 		if ((pointDifference >= 2) && points[player] >= 4) {
 			incrementGames(player);
@@ -43,7 +48,6 @@ public class Score {
 	}
 
 	private void incrementSets(int player) {
-
 		sets[player]++;
 
 	}
@@ -63,10 +67,11 @@ public class Score {
 			return 0;
 		return 1;
 	}
-	
-	public printScore() {
-		System.out.println("A:" + sets[0] + games[0] + points[0]);
-		System.out.println("B:" + sets[1] + games[1] + points[1]);	
+
+	public void printScore() {
+		System.out.println("  S-G-P");
+		System.out.println("A:" + sets[0] + "-" + games[0] + "-" + points[0]);
+		System.out.println("B:" + sets[1] + "-" + games[1] + "-" + points[1] + "\n");
 	}
 
 }
