@@ -13,11 +13,22 @@ public class Score {
 	}
 
 	private void incrementGames(int player) {
-
+		
+		int otherPlayer = (player+1)%2;
+        
+        game[player]++;
+        
+        if(game[player] == 6 && game[player] - game[otherPlayer] >= 2) {
+            incrementSet(player);
+            resetGame();
+        }
+		
 	}
 
 	private void incrementSets(int player) {
-
+	
+		set[player]++;
+	
 	}
 
 	public void resetPoints() {
