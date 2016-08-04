@@ -4,46 +4,54 @@ public class Score {
 	int[] sets = { 0, 0 };
 	int[] games = { 0, 0 };
 
-	private boolean hasWon() {
-		return false;
+	private boolean hasWon(int player) {
+		return sets[player] - sets[(1 - player)] >= 2;
 	}
 
-	public void incrementPoint(int player) {
-		
+	public void incrementPoint(char ch) {
+		int player = getPlayerFromChar(ch);
 		points[player]++;
-	    int otherPlayer = (player+1) % 2;
-	    int pointDifference = points[player] - points[otherPlayer];
-	    if((pointDifference>=2) && points[player]>=4) {
-	        incrementGames(player);
-	        resetPoints();
-	    }
+		int otherPlayer = 1 - player;
+		int pointDifference = points[player] - points[otherPlayer];
+		if ((pointDifference >= 2) && points[player] >= 4) {
+			incrementGames(player);
+			resetPoints();
+		}
 
 	}
 
 	private void incrementGames(int player) {
-		
-		int otherPlayer = (player+1)%2;
-        
-        game[player]++;
-        
-        if(game[player] == 6 && game[player] - game[otherPlayer] >= 2) {
-            incrementSet(player);
-            resetGame();
-        }
-		
+
+		int otherPlayer = 1 - player;
+
+		games[player]++;
+
+		if (games[player] >= 6 && games[player] - games[otherPlayer] >= 2) {
+			incrementSets(player);
+			resetGames();
+		}
+
 	}
 
 	private void incrementSets(int player) {
-	
-		set[player]++;
-	
+
+		sets[player]++;
+
 	}
 
 	public void resetPoints() {
-
+		points[0] = 0;
+		points[1] = 0;
 	}
 
 	public void resetGames() {
+		games[0] = 0;
+		games[1] = 0;
+	}
 
+	private int getPlayerFromChar(char ch) {
+		if (ch == 'A')
+			return 0;
+		return 1;
 	}
 }
