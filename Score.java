@@ -63,4 +63,10 @@ public class Score {
 			return 0;
 		return 1;
 	}
+	
+	public printScore() {
+		System.out.println("A:" + sets[0] + games[0] + points[0]);
+		System.out.println("B:" + sets[1] + games[1] + points[1]);	
+	}
+
 }
